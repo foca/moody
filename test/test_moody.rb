@@ -1,68 +1,68 @@
 require "test/unit"
 require "moody"
-require "ostruct"
-
-class Stop < Moody::State
-  def color
-    "red"
-  end
-
-  def next
-    switch_to Go
-  end
-end
-
-class Go < Moody::State
-  def color
-    "green"
-  end
-
-  def next
-    switch_to Caution
-  end
-end
-
-class Caution < Moody::State
-  def color
-    "yellow"
-  end
-
-  def next
-    switch_to Stop
-  end
-end
-
-class TrafficLight
-  extend  Moody::Context
-
-  initial_state Stop
-  delegate_to_state :color, :next
-end
 
 class TestMoodyByExample < Test::Unit::TestCase
+  class SiegeMode < Moody::State
+    def strength
+      50
+    end
+
+    def siege_mode!
+    end
+
+    def tank_mode!
+      switch_to TankMode
+    end
+  end
+
+  class TankMode < Moody::State
+    def strength
+      20
+    end
+
+    def siege_mode!
+      switch_to SiegeMode
+    end
+
+    def tank_mode!
+    end
+  end
+
+  class SiegeTank
+    extend Moody::Context
+
+    initial_state TankMode
+    delegate_to_state :strength, :tank_mode!, :siege_mode!
+
+    def attack(target)
+      "dealt #{strength} to #{target}"
+    end
+  end
+
   def setup
-    @context = TrafficLight.new
+    @context_class = Class.new(SiegeTank)
   end
 
   def test_initial_state
-    assert @context.state.is_a?(Stop)
+    @context_class.initial_state SiegeMode
+
+    test_context = @context_class.new
+    assert test_context.state.is_a?(SiegeMode)
   end
 
   def test_switch_state
-    @context.next
-    assert @context.state.is_a?(Go)
-    @context.next
-    assert @context.state.is_a?(Caution)
-    @context.next
-    assert @context.state.is_a?(Stop)
+    test_context = @context_class.new
+    test_context.siege_mode!
+    assert test_context.state.is_a?(SiegeMode)
+    test_context.tank_mode!
+    assert test_context.state.is_a?(TankMode)
   end
 
-  def test_delegate_properties
-    @context.next
-    assert_equal "green",  @context.color
-    @context.next
-    assert_equal "yellow", @context.color
-    @context.next
-    assert_equal "red",    @context.color
+  def test_delegates_methods
+    test_context = @context_class.new
+    test_context.siege_mode!
+    assert_equal "dealt 50 to target", test_context.attack("target")
+    test_context.tank_mode!
+    assert_equal "dealt 20 to target", test_context.attack("target")
   end
 end
