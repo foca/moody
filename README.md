@@ -1,5 +1,5 @@
 Moody: An implementation of the State Pattern in ruby
------------------------------------------------------
+=====================================================
 
 This is an object-oriented way to represent Finite State Machines, where an
 object can change its behavior at runtime, depending on its internal state.
@@ -49,7 +49,7 @@ For a stupid example of how you would use this, here's a traffic light:
       delegate_to_state :color, :next
     end
 
-    traffic_light = TrafficLight.new
+    traffic_light - TrafficLight.new
 
     loop do
       puts traffic_light.color
@@ -57,18 +57,18 @@ For a stupid example of how you would use this, here's a traffic light:
     end
 
 Inspiration
-===========
+-----------
 
 This is a reimplementation of the State Pattern gem by Daniel Cadenas. Check out
 his implementation at [http://github.com/dcadenas/state_pattern]().
 
 Installing
-==========
+----------
 
     gem install moody
 
 Contributing
-============
+------------
 
 * Send a pull request.
 * Small, atomic commits, please.
@@ -76,7 +76,7 @@ Contributing
 * Bonus points if you add features on topic branches.
 
 License
-=======
+-------
 
 Copyright Nicolás Sanguinetti <hi@nicolassanguinetti.info>
 
