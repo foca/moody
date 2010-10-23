@@ -72,6 +72,15 @@ class TestMoodyByExample < Test::Unit::TestCase
     end
   end
 
+  class EmptyContext
+    class A < Moody::State; end
+    class B < Moody::State; end
+
+    extend Moody::Context
+
+    initial_state A
+  end
+
   def setup
     $callbacks = []
     @context_class = Class.new(SiegeTank)
@@ -90,6 +99,12 @@ class TestMoodyByExample < Test::Unit::TestCase
     assert test_context.state.is_a?(SiegeMode)
     test_context.tank_mode!
     assert test_context.state.is_a?(TankMode)
+  end
+
+  def test_switch_from_context
+    test_context = EmptyContext.new
+    test_context.switch_to EmptyContext::B
+    assert test_context.state.is_a?(EmptyContext::B)
   end
 
   def test_delegates_methods

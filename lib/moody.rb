@@ -3,6 +3,7 @@ module Moody
     def self.extended(base)
       base.class_eval do
         attr_accessor :state
+        delegate_to_state :switch_to
       end
     end
 
