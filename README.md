@@ -60,7 +60,7 @@ Inspiration
 -----------
 
 This is a reimplementation of the State Pattern gem by Daniel Cadenas. Check out
-his implementation at [http://github.com/dcadenas/state_pattern]().
+his implementation at [his repository](http://github.com/dcadenas/state_pattern).
 
 Installing
 ----------
