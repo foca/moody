@@ -7,7 +7,7 @@ object can change its behavior at runtime, depending on its internal state.
 If you want more information about this pattern, read [the explanation by
 SourceMaking](http://sourcemaking.com/design_patterns/state).
 
-For a stupid example of how you would use this, here's a traffic light:
+For a stupid example of how you would use this, here is a traffic light:
 
     class Stop < Moody::State
       def color
@@ -17,6 +17,14 @@ For a stupid example of how you would use this, here's a traffic light:
       def next
         sleep 3
         switch_to Go
+      end
+
+      def enter
+        # turn on camera tu see who crosses on a red light
+      end
+
+      def leave
+        # turn off camera
       end
     end
 
@@ -55,6 +63,13 @@ For a stupid example of how you would use this, here's a traffic light:
       puts traffic_light.color
       traffic_light.next
     end
+
+Callbacks
+---------
+
+As you can see from the example above, Moody also provides callbacks when
+entering and leaving a state. If your state classes define instance methods
+`enter` and `leave`, then they will be called at the appropriate times.
 
 Inspiration
 -----------

@@ -35,7 +35,15 @@ module Moody
     end
 
     def switch_to(next_state)
+      context.state.leave if context.state.respond_to?(:leave)
       context.state = next_state.new(context)
+      context.state.enter if context.state.respond_to?(:enter)
+    end
+
+    def leave
+    end
+
+    def enter
     end
   end
 end
