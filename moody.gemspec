@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name    = "moody"
-  s.version = "0.2.0"
+  s.version = "0.2.1"
   s.date    = "2010-10-23"
 
   s.description = "Simple and straightforward implementation of the state pattern, inspired by the StatePattern gem"
