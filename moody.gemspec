@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name    = "moody"
-  s.version = "0.1"
+  s.version = "0.1.1"
   s.date    = "2010-10-23"
 
   s.description = "Simple and straightforward implementation of the state pattern, inspired by the StatePattern gem"
@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.has_rdoc          = true
 
   s.files = %w[
-    README
+    README.md
     moody.gemspec
     lib/moody.rb
     test/test_moody.rb
