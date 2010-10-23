@@ -1,12 +1,11 @@
 Moody: An implementation of the State Pattern in ruby
-=====================================================
+-----------------------------------------------------
 
 This is an object-oriented way to represent Finite State Machines, where an
 object can change its behavior at runtime, depending on its internal state.
 
-If you want more information about this pattern, read:
-
-    http://sourcemaking.com/design_patterns/state
+If you want more information about this pattern, read [the explanation by
+SourceMaking](http://sourcemaking.com/design_patterns/state).
 
 For a stupid example of how you would use this, here's a traffic light:
 
@@ -61,7 +60,7 @@ Inspiration
 ===========
 
 This is a reimplementation of the State Pattern gem by Daniel Cadenas. Check out
-his implementation at http://github.com/dcadenas/state_pattern
+his implementation at [http://github.com/dcadenas/state_pattern]().
 
 Installing
 ==========
