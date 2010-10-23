@@ -28,12 +28,14 @@ module Moody
   end
 
   class State
+    attr_reader :context
+
     def initialize(context)
-      @_context = context
+      @context = context
     end
 
     def switch_to(next_state)
-      @_context.state = next_state.new(@_context)
+      context.state = next_state.new(context)
     end
   end
 end
