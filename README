@@ -63,6 +63,11 @@ Inspiration
 This is a reimplementation of the State Pattern gem by Daniel Cadenas. Check out
 his implementation at http://github.com/dcadenas/state_pattern
 
+Installing
+==========
+
+    gem install moody
+
 Contributing
 ============
 
